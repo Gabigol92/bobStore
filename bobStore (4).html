@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BobStore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .hidden {
+      display: none;
+    }
+    textarea {
+      width: 100%;
+      height: 90px;
+      margin-top: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 14px;
+      resize: none;
+    }
+    a button {
+      background: #25D366;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🛒 BobStore</h1>
+    <div class="card">
+      <h2>Gamepass Ultimate Pc/Console</h2>
+      <p><strong>Preço: R$ 4,00</strong></p>
+      <button onclick="mostrarPix()">Comprar</button>
+
+      <div id="pixArea" class="hidden">
+        <p><strong>Copia e Cola PIX:</strong></p>
+        <textarea id="pixCode" readonly>00020126360014BR.GOV.BCB.PIX0114+554598806823552040000530398654044.005802BR5908BobStore6008Pagemtos62120508BobStore6304120A</textarea>
+        <button onclick="copiarPix()">Copiar Código PIX</button>
+      </div>
+
+      <div id="whatsArea" class="hidden">
+        <a id="whatsLink" target="_blank">
+          <button>📲 Enviar Comprovante no WhatsApp</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function mostrarPix() {
+      document.getElementById("pixArea").classList.remove("hidden");
+    }
+
+    function copiarPix() {
+      const pix = document.getElementById("pixCode");
+      pix.select();
+      pix.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+
+      alert("Código PIX copiado!");
+      mostrarWhats();
+    }
+
+    function mostrarWhats() {
+      const numero = "5545988068235";
+      const msg = "Sou da BobStore e irei enviar o comprovante.";
+      const link = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
+      document.getElementById("whatsLink").href = link;
+      document.getElementById("whatsArea").classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
